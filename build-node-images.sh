@@ -118,7 +118,7 @@ case "$1" in
         for major_version in $NODE_MAJOR_VERSIONS ; do
             for node_version in $(get_latest_node_version $major_version) ; do
                 create_node_image "v${node_version}"
-                # push_image_to_registry "${DOCKER_REGISTRY_NAMESPACE}/${DOCKER_NAME_PREFIX}-node:v${node_version}"
+                push_image_to_registry "${DOCKER_REGISTRY_NAMESPACE}/${DOCKER_NAME_PREFIX}-node:v${node_version}"
             done
         done
         ;;
