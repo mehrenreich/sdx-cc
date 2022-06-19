@@ -16,7 +16,7 @@ For each of these major version, a Docker container image is being created, each
 - `17.9.1`
 - `18.4.0`
 
-As a base image, a "Ubuntu-22.04" has been chosen.
+As a base image, a `ubuntu:22.04` has been chosen.
 
 For all images, there are Dockerfiles used:
 
