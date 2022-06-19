@@ -15,7 +15,8 @@ UBUNTU_VERSION="22.04"
 NODE_MAJOR_VERSIONS="16 17 18"
 
 DOCKER_NAME_PREFIX="sdx"
-DOCKER_REGISTRY_NAMESPACE="zipslack"
+DOCKER_REGISTRY_NAMESPACE="zipslack" # relates to docker.io/library
+DOCKER_PUSH_TO_REGISTRY=true
 
 ##
 # Get the latest avaiable minor version for the given major version.
@@ -116,7 +117,10 @@ case "$1" in
         for major_version in $NODE_MAJOR_VERSIONS ; do
             for node_version in $(get_latest_node_version $major_version) ; do
                 create_node_image "v${node_version}"
-                push_image_to_registry "${DOCKER_REGISTRY_NAMESPACE}/${DOCKER_NAME_PREFIX}-node:v${node_version}"
+
+                if [[ $DOCKER_PUSH_TO_REGISTRY == true ]] ; then
+                    push_image_to_registry "${DOCKER_REGISTRY_NAMESPACE}/${DOCKER_NAME_PREFIX}-node:v${node_version}"
+                fi
             done
         done
         ;;
