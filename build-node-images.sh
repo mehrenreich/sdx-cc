@@ -26,6 +26,7 @@ DOCKER_PUSH_TO_REGISTRY=true
 #
 get_latest_node_version () {
     local major_version=$1
+
     n lsr $major_version | grep "^\\d" | head -n1
 }
 
@@ -76,7 +77,6 @@ create_image () {
     local dockerfile=$1
     local tags=$2
     local build_args=$3
-    
     local tag_list=""
     local build_arg_list=""
 
@@ -105,6 +105,7 @@ create_image () {
 #
 push_image_to_registry () {
     local image=$1
+    
     docker push $image
 }
 
