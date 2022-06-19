@@ -4,14 +4,13 @@
 #
 # Purpose: Create base Docker images with node.js installed. See the README file for details.
 #
-# Prerequisites:
-# - docker (https://www.docker.com)
-# - n (https://www.npmjs.com/package/n)
-#
 # Created: 2022-06-19 Michael Ehrenreich
 #
 #
 
+##
+# Variables - modify to your needs
+#
 UBUNTU_VERSION="22.04"
 NODE_MAJOR_VERSIONS="16 17 18"
 
@@ -43,7 +42,7 @@ create_base_image () {
     local tags="${DOCKER_NAME_PREFIX}-base:latest"
     local build_args="UBUNTU_VERSION=${UBUNTU_VERSION}"
 
-    create_image $dockerfile $tags $build_args
+    create_image "${dockerfile}" "${tags}" "${build_args}"
 }
 
 ##
@@ -58,11 +57,10 @@ create_base_image () {
 create_node_image () {
     local node_version=$1
     local dockerfile="Dockerfile.node"
-    # local tags="${DOCKER_NAME_PREFIX}-node:${node_version} ${DOCKER_NAME_PREFIX}-node:${node_version%.*} ${DOCKER_NAME_PREFIX}-node:${node_version%.*.*}"
-    local tags="${DOCKER_NAME_PREFIX}-node:${node_version}"
+    local tags="${DOCKER_NAME_PREFIX}-node:${node_version} ${DOCKER_NAME_PREFIX}-node:${node_version%.*} ${DOCKER_NAME_PREFIX}-node:${node_version%.*.*}"
     local build_args="NODE_VERSION=${node_version}"
 
-    create_image $dockerfile $tags $build_args
+    create_image "${dockerfile}" "${tags}" "${build_args}"
 }
 
 ##
@@ -95,7 +93,7 @@ create_image () {
         build_arg_list="${build_arg_list} --build-arg ${b}"
     done
 
-    echo docker build ${tag_list} ${build_arg_list} -f ${dockerfile} .
+    docker build "${tag_list}" "${build_arg_list}" -f ${dockerfile} .
 }
 
 ##
