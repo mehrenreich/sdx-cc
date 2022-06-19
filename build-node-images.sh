@@ -93,7 +93,7 @@ create_image () {
         build_arg_list="${build_arg_list} --build-arg ${b}"
     done
 
-    docker build "${tag_list}" "${build_arg_list}" -f ${dockerfile} .
+    docker build ${tag_list} ${build_arg_list} -f ${dockerfile} .
 }
 
 ##
