@@ -6,14 +6,14 @@ Some remarks:
 
 Following non-eol node.js versions are supported as of today:
 
+- `14`
 - `16`
-- `17`
 - `18`
 
 For each of these major version, a Docker container image is being created, each with the latest minor version:
 
+- `14.19.3`
 - `16.15.1`
-- `17.9.1`
 - `18.4.0`
 
 As a base image, a `ubuntu:22.04` has been chosen.
@@ -55,11 +55,11 @@ So what's being created?
 
 ### Base image
 
-The base image is named/tagged: `sdx-base:latest`. Actually I don't recommend using "latest" tags in an automated/unattended process, but since this is maintained by me, I can guarantee the stability resp. steady state of the image.
+The base image is named/tagged: `sdx-base:22.04`.
 
 ```
 REPOSITORY          TAG        IMAGE ID       CREATED             SIZE
-sdx-base            latest     8e2f962f001e   About an hour ago   119MB
+sdx-base            22.04      8e2f962f001e   About an hour ago   119MB
 ```
 
 ### Node images
@@ -67,15 +67,14 @@ sdx-base            latest     8e2f962f001e   About an hour ago   119MB
 Each image is tagged with the node.js version as well as the minors and majors:
 
 ```
-REPOSITORY          TAG        IMAGE ID       CREATED             SIZE
-sdx-node            v18        3d210e6eb227   About an hour ago   275MB
-sdx-node            v18.4      3d210e6eb227   About an hour ago   275MB
-sdx-node            v18.4.0    3d210e6eb227   About an hour ago   275MB
-sdx-node            v17        c6ae7fe23026   About an hour ago   269MB
-sdx-node            v17.9      c6ae7fe23026   About an hour ago   269MB
-sdx-node            v17.9.1    c6ae7fe23026   About an hour ago   269MB
-sdx-node            v16        1a068a3e31af   About an hour ago   215MB
-sdx-node            v16.15     1a068a3e31af   About an hour ago   215MB
-sdx-node            v16.15.1   1a068a3e31af   About an hour ago   215MB
+REPOSITORY        TAG              IMAGE ID       CREATED              SIZE
+sdx-node          v18              b70796818fca   11 seconds ago       274MB
+sdx-node          v18.4            b70796818fca   11 seconds ago       274MB
+sdx-node          v18.4.0          b70796818fca   11 seconds ago       274MB
+sdx-node          v16              0d0f35a958c8   17 seconds ago       214MB
+sdx-node          v16.15           0d0f35a958c8   17 seconds ago       214MB
+sdx-node          v16.15.1         0d0f35a958c8   17 seconds ago       214MB
+sdx-node          v14              422942af04e1   27 seconds ago       221MB
+sdx-node          v14.19           422942af04e1   27 seconds ago       221MB
+sdx-node          v14.19.3         422942af04e1   27 seconds ago       221MB
 ```
-
