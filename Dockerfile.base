@@ -4,4 +4,7 @@ FROM ubuntu:${UBUNTU_VERSION}
 
 ENV DEBIAN_FRONTEND="non-interactive"
 
-RUN apt-get update && apt-get --no-install-recommends install curl xz-utils -y
+RUN apt-get update && apt-get --no-install-recommends install \
+    curl \
+    xz-utils \
+    ca-certificates -y

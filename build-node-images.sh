@@ -12,7 +12,7 @@
 # Variables - modify to your needs
 #
 UBUNTU_VERSION="22.04"
-NODE_MAJOR_VERSIONS="16 17 18"
+NODE_MAJOR_VERSIONS="14 16 18"
 
 DOCKER_NAME_PREFIX="sdx"
 DOCKER_REGISTRY_NAMESPACE="zipslack" # relates to docker.io/library
