@@ -1,4 +1,6 @@
-FROM sdx-base AS base
+ARG BASE_VERSION
+
+FROM sdx-base:${BASE_VERSION} AS base
 
 ARG NODE_VERSION
 
