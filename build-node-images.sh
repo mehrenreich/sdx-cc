@@ -16,7 +16,7 @@ NODE_MAJOR_VERSIONS="16 17 18"
 
 DOCKER_NAME_PREFIX="sdx"
 DOCKER_REGISTRY_NAMESPACE="zipslack" # relates to docker.io/library
-DOCKER_PUSH_TO_REGISTRY=true
+DOCKER_PUSH_TO_REGISTRY=false
 
 ##
 # Get the latest avaiable minor version for the given major version.
@@ -41,7 +41,7 @@ get_latest_node_version () {
 #
 create_base_image () {
     local dockerfile="Dockerfile.base"
-    local tags="${DOCKER_NAME_PREFIX}-base:latest"
+    local tags="${DOCKER_NAME_PREFIX}-base:${UBUNTU_VERSION}"
     local build_args="UBUNTU_VERSION=${UBUNTU_VERSION}"
 
     create_image "${dockerfile}" "${tags}" "${build_args}"
@@ -60,7 +60,7 @@ create_node_image () {
     local node_version=$1
     local dockerfile="Dockerfile.node"
     local tags="${DOCKER_NAME_PREFIX}-node:${node_version} ${DOCKER_NAME_PREFIX}-node:${node_version%.*} ${DOCKER_NAME_PREFIX}-node:${node_version%.*.*}"
-    local build_args="NODE_VERSION=${node_version}"
+    local build_args="NODE_VERSION=${node_version} BASE_VERSION=${UBUNTU_VERSION}"
 
     create_image "${dockerfile}" "${tags}" "${build_args}"
 }
